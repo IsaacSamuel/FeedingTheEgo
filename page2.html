@@ -1,0 +1,2141 @@
+<html><head><script src="page2_files/1063.js" async="" type="text/javascript"></script><script type="text/javascript" async="" src="page2_files/6377660405.js"></script><script language="JavaScript">
+var beforeload = (new Date()).getTime();
+var totalTime = 0;
+var clientTime = 0;
+var serverTime = 0;
+var XmlHttpObj1;
+function Sign(X) { return X>0 ? "+" : X<0 ? "-" : " " }
+function CreateXmlHttpObj1() {
+	try {XmlHttpObj1 = new ActiveXObject("Msxml2.XMLHTTP");}
+	catch(e) {try{XmlHttpObj1 = new ActiveXObject("Microsoft.XMLHTTP");}
+		catch(oc) {XmlHttpObj1 = null;}}
+	if(!XmlHttpObj1 && typeof XMLHttpRequest != "undefined") {XmlHttpObj1 = new XMLHttpRequest();}}
+
+function updateTime() {
+			var sQuery = "npage=2&";
+			var sURL = "/sol3/results.cfm";
+
+			var sNameDom = "papers.ssrn.com";
+			var sIP = "129.32.224.68";
+			var sBrowser = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0";
+			var sProtocol = location.protocol;
+			var requestUrl = sProtocol+ "//"+sNameDom+"/AjaxStatic.cfm?file=updateLoadTime";
+
+			var mydate= new Date();
+			var sTZOffset = mydate.getTimezoneOffset()/60;
+			var getSign = Sign(sTZOffset);
+
+			if (getSign == '-') {sTZOffset = "GMT+ "+ Math.abs(sTZOffset)+":00";}
+			else {if (getSign == '+') {sTZOffset = "GMT- "+ Math.abs(sTZOffset)+":00";}
+				  else {sTZOffset = "GMT";}
+			}
+
+			CreateXmlHttpObj1();
+			if(XmlHttpObj1) {
+				XmlHttpObj1.open('POST',requestUrl,false);
+				XmlHttpObj1.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				XmlHttpObj1.send("url1=" +encodeURIComponent(sURL)+ "&qry=" +encodeURIComponent(sQuery)+ "&ip=" +sIP+ "&zone=" +encodeURIComponent(sTZOffset)+ "&ua=" +encodeURIComponent(sBrowser)+ "&setime=" +serverTime+ "&totime=" +totalTime);
+
+			}
+}
+
+//Language function
+function changeLanguage(response){
+	window.location.href=response;
+}
+
+function loadingTime() {
+	//calculate the current time in afterload
+	var afterload = (new Date()).getTime();
+	//calculate the seconds
+	clientTime = (afterload-beforeload)/1000;
+	serverTime =  parseFloat(document.getElementById("serverTime").innerHTML);
+	totalTime = (clientTime + serverTime).toFixed(3);
+	document.getElementById("loadingtime").innerHTML = "and delivered in " + totalTime + " seconds";
+	updateTime();
+}
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+</script>
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+
+	
+
+	
+
+
+
+	
+	
+	
+	
+
+	<script language="javascript">
+		//Language functions
+		function changeLanguage1(language, response){
+
+			$.ajax({
+				url: '/AltLanguage_ajax.cfm?type=changeLanguage&partid=1&strCode=en',
+				cache: false,
+				success: function(data) {
+					// Update values in cookies
+					Set_Cookie('SITEID',language,'-1','/','.ssrn.com','');
+					Set_Cookie('SITEID',language,'1000','/','.ssrn.com','');
+
+					// Finally, perform redirection
+					if (response == 'reload') {
+						window.location.reload();
+					}
+					else {
+						window.location.href=response;
+					}
+				}
+			});
+		}
+
+		function Set_Cookie( name, value, expires, path, domain, secure ) {
+			// set time, its in milliseconds
+			var today = new Date();
+			today.setTime( today.getTime() );
+
+			/*
+			if the expires variable is set, make the correct
+			expires time, the current script below will set
+			it for x number of days, to make it for hours,
+			delete * 24, for minutes, delete * 60 * 24
+			*/
+			if ( expires ) {
+				expires = expires * 1000 * 60 * 60 * 24;
+			}
+
+			var expires_date = new Date( today.getTime() + (expires) );
+
+			document.cookie = name + "=" +escape( value ) +
+			( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+			( ( path ) ? ";path=" + path : "" ) +
+			( ( domain ) ? ";domain=" + domain : "" ) +
+			( ( secure ) ? ";secure" : "" );
+		}
+
+
+		/*
+		* We use this function when the language should be stripped from an object, like a form RADIO
+		*/
+		function getLanguage ( oObj ) {
+			var specialChars = "!@#$^&%*()+=-[]\/{}|:<>?,.";
+
+			// Need to clean up code if object came from Mura site.
+			sCode = oObj.value;
+			if (sCode.length > 2) {
+				for (var i = 0; i < specialChars.length; i++) {
+					sCode = sCode.replace(new RegExp("\\" + specialChars[i], 'gi'), '');
+				}
+				// After cleaning up special chars, we take the first two chars.
+				sCode = sCode.substring(0,2).trim();
+			}
+
+			return sCode;
+		}
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>SSRN Electronic Library</title>
+		<meta name="robots" content="noindex">
+
+		<script language="javascript">
+			function changePage(strURL){
+				
+					
+						document.searchForm.action = strURL;
+						document.searchForm.submit();
+					
+				
+			}
+
+			function removeST(intST){
+				var lstCurrST = document.getElementById("strSearchTerm").value.split(",");
+				var lstNewST = "";
+
+				for ( i=0 ; i < lstCurrST.length ; i++){
+					if(i != (intST-1)){
+						if(lstNewST == ""){
+							lstNewST = lstCurrST[i];
+						}
+						else{
+							lstNewST = lstNewST + "," + lstCurrST[i];
+						}
+					}
+				}
+				document.searchForm.strSearchTerm.value = lstNewST;
+				document.form1.strSearchTerm.value = lstNewST;
+
+				if (lstNewST.length < 1){
+					// force original Sphinx search
+					document.searchForm.iSearchWithinDone.value = 0;
+				}
+				document.searchForm.submit();
+			}
+
+			function resortResults(intType){
+				if(intType == 1){
+						document.form1.orderBy.value = " ab_title asc ";
+				}
+				if(intType == 2){
+						document.form1.orderBy.value = " ab_title desc ";
+				}
+				if(intType == 3){
+						document.form1.orderBy.value = " numHits asc ";
+				}
+				if(intType == 4){
+						document.form1.orderBy.value = " numHits desc ";
+						}
+				if(intType == 5){
+						document.form1.orderBy.value = " ab_approval_date asc ";
+							}
+				if(intType == 6){
+						document.form1.orderBy.value = " ab_approval_date desc ";
+				}
+				document.form1.strSelectedOption.value = intType;
+				document.form1.submit();
+			}
+		</script>
+
+		<link href="page2_files/style.css" type="text/css" rel="stylesheet">
+		<link href="page2_files/sol3.css" type="text/css" rel="stylesheet">
+		<link href="page2_files/treeView.css" type="text/css" rel="stylesheet">
+		<link rel="search" type="application/opensearchdescription+xml" href="https://papers.ssrn.com/sol3/opensearchdescription.xml" title="SSRN">
+		<script language="JavaScript">
+		var baseUrl = 'https://papers.ssrn.com/sol3/';
+		var ssrnBalloonPath = "https://static.ssrn.com/images/tip_balloon2/";
+		</script>
+	
+    	 <script type="text/javascript">
+            function optimizelyTimeout() {
+                window.optimizely = window.optimizely || [];
+                if (!window.optimizely.data) {
+                    window.optimizely.push("timeout")
+                }
+            }
+            (function () {
+                var e = "https:" == document.location.protocol ? "https://" : "http://";
+                var t = document.createElement("script");
+                t.type = "text/javascript";
+                t.async = true;
+                
+                    
+                    
+                    t.src = e + "cdn.optimizely.com/js/6377660405.js";
+                    
+                
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(t, n)
+            })();
+            setTimeout(optimizelyTimeout, 1e3)
+        </script>
+    <script src="page2_files/satelliteLib-8fea1b3346833690f9c242f7ed61a356839d979a.js"></script><script src="page2_files/satellite-57f7cdaa64746d492a000540.js"></script><script src="page2_files/satellite-57f7cdaa64746d492a000541.js"></script><script src="page2_files/satellite-5776a3a164746d77f3001708.js"></script>
+<script type="text/javascript">var pageData = {"page":{"productName":"SS","businessUnit":"els:rp:ssrn","loadTimestamp":"1486245485943","name":"searchresults","language":"en","loadTime":"734","noTracking":"","type":"SP-SR","environment":"prod"},"visitor":{"accessType":"ss:guest","userId":""}};</script>
+<script src="page2_files/s-code-contents-4f66efa78c14bee69b6e022c8ef51b917c79f1f3.js"></script></head>
+
+	<body topmargin="0" leftmargin="0" rightmargin="0" bgcolor="WHITE" marginwidth="0" marginheight="0"><div id="WzTtDiV" style="visibility: hidden; position: absolute; overflow: hidden; padding: 0px; width: 0px; left: 0px; top: 0px;"></div>
+		
+			<script type="text/javascript" src="page2_files/wz_tooltip.js"></script>
+			<script type="text/javascript" src="page2_files/tip_balloon.js"></script>
+			<script type="text/javascript" src="page2_files/tip_followscroll.js"></script>
+		
+
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tbody><tr>
+				<td colspan="3" align="left">
+					
+					
+					
+
+
+
+
+	
+	
+
+	
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+		
+		
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="page2_files/custom-bootstrap.css">
+<link rel="stylesheet" type="text/css" href="page2_files/custom.css">
+
+<!--HEADER-->
+<div id="headerId" class="header-integration">
+	<div class="header-redesigned">
+		<div class="container">
+			<div class="header-left">
+				<a href="https://www.ssrn.com/"><img class="logo-ssrn-img" src="page2_files/ssrn-logo.png" alt="SSRN logo"></a>
+			</div>
+			<div class="header-left">
+				<nav class="menu-main mo-nav">
+					<div class="mo-nav-header">
+						<a class="mo-nav-search-btn" href="#"><i class="icon-gizmo-search"></i></a>
+						<a class="mo-nav-close-btn" href="#"><i class="icon-gizmo-delete"></i></a>
+					</div>
+					<div class="menu-search header-search">
+						<div class="container">
+							<div class="row">
+								<div class="header-search-left">
+									<form class="header-search-form" id="searchForm1" action="https://papers.ssrn.com/sol3/results.cfm" method="post" target="_top" name="formQuickSearch">
+										<i class="icon icon-gizmo-search"></i>
+										<input required="" class="header-search-input" placeholder="Search eLibrary" name="txtKey_Words" id="txtKeywords" type="text">
+										<input name="isQuickSearch" value="true" type="hidden">
+									</form>
+								</div>
+								<div class="header-search-right">
+									<a href="https://papers.ssrn.com/sol3/DisplayAbstractSearch.cfm">Advanced</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul>
+						<li><a href="https://papers.ssrn.com/sol3/DisplayJournalBrowse.cfm">Browse</a></li>
+						<li><a href="https://www.ssrn.com/en/index.cfm/subscribe/">Subscriptions</a></li>
+						<li class="has-sub-menu">
+							<a href="javascript:void(0);">Rankings</a>
+							<ul class="sub-menu">
+								<li><a href="https://hq.ssrn.com/rankings/Ranking_display.cfm?TRN_gID=10">Top Papers</a></li>
+								<li><a href="https://www.ssrn.com/en/index.cfm/top-authors/">Top Authors</a></li>
+								<li><a href="https://www.ssrn.com/en/index.cfm/top-organizations/">Top Organizations</a></li>
+							</ul>
+						</li>
+						<li><a href="https://hq.ssrn.com/submissions/CreateNewAbstract.cfm">Submit a paper</a></li>
+						<li><a href="http://ssrnblog.com/" target="_blank">Blog</a></li>
+						<li class="register-link"><a href="https://hq.ssrn.com/login/pubsigninjoin.cfm">Register now <i class="icon icon-gizmo-navigate-right"></i></a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="header-right">
+				<a class="shopping-cart-btn" href="https://papers.ssrn.com/sol3/ShoppingCart.cfm"><i class="icon icon-gizmo-shopping-cart"></i></a>
+				<a id="profile" href="#" class="user-container" style="display:none;">
+					<div id="name-header" class="user-name">Public User</div>
+					<div id="user-icon-btn" class="user-icon-btn"><i class="icon icon-gizmo-person"></i></div>
+				</a>
+				
+				<a id="btnSignin" class="btn-blue header-signin-btn">SIGN IN</a>
+					<div class="header-tooltip signin-tooltip loginBox mo-nav">
+						<div class="mo-nav-header">
+							<a class="mo-nav-close-btn" href="#"><i class="icon-gizmo-delete"></i></a>
+						</div>
+						<div class="tooltip-bg"></div>
+						<div class="tooltip-container">
+							<div class="input-tag">Email</div>
+							<input id="txtLogin" class="signin-input username-inp" type="text">
+							<div class="error_show_login">This field is required</div>
+							<div class="input-tag">Password</div>
+							<input id="txtPassword" class="signin-input password-inp" type="password">
+							<div class="error_show_pass">This field is required</div>
+							<div id="errorMessageLogin"></div>
+							<a id="signin" href="javascript:void(0);" class="btn-orange signin-btn">Sign in</a>
+							<div class="remember-me">
+								<input name="" class="remember-me-check" type="checkbox">
+								<span>Remember me</span>
+							</div>
+							<a href="https://hq.ssrn.com/login/passwordAssistance.cfm?userEmail=&amp;rootPage=signIn" class="forgot-link">Forgot ID or Password?</a>
+							<div class="clear"></div>
+							<a href="https://hq.ssrn.com/login/pubsigninjoin.cfm" class="register-link">Register now <i class="icon icon-gizmo-navigate-right"></i></a>
+						</div>
+					</div>
+				
+				<div class="header-tooltip user-tooltip profileMenu mo-nav">
+					<div class="mo-nav-header">
+						<div id="name-mo-header" class="mo-nav-username">Public User</div>
+						<i class="icon icon-gizmo-person"></i>
+						<a class="mo-nav-close-btn" href="#"><i class="icon-gizmo-delete"></i></a>
+					</div>
+					<div class="tooltip-bg"></div>
+					<div class="tooltip-container">
+						<ul class="profile-in">
+							<li class="mo-list-title visible-xs-block"><strong>Your Account</strong></li>
+							<li><a id="userhome" href="https://hq.ssrn.com/UserHome.cfm">User Home</a></li>
+							<li><a id="personal" href="https://hq.ssrn.com/Participant.cfm?rectype=edit&amp;partid=1&amp;perinf=y">Personal Info</a></li>
+							<li><a id="affil" href="https://hq.ssrn.com/Affiliations/AffiliationList.cfm?partid=1">Affiliations</a></li>
+							<li><a id="suscr" href="https://hq.ssrn.com/Subscriptions.cfm?partId=1">Subscriptions</a></li>
+							<li><a id="mypapers" href="https://hq.ssrn.com/submissions/MyPapers.cfm?partid=1">My Papers</a></li>
+							<li><a href="https://hq.ssrn.com/Briefcase/myBriefcase.cfm">My Briefcase</a></li>
+							<li class="signin-link"><a href="https://hq.ssrn.com/SignOut.cfm?proc=notme"><i class="icon icon-gizmo-log-out"></i>Sign out</a></li>
+						</ul>
+					</div>
+				</div>
+				<button id="btnMenu" type="button" class="header-menu-btn" aria-expanded="false">
+					<i class="icon icon-nav-menu"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--SEARCH HEADER START-->
+
+	<div class="header-search">
+		<div class="container">
+			<div class="row">
+				<div class="header-search-left">
+					<form class="header-search-form" id="searchForm1" action="https://papers.ssrn.com/sol3/results.cfm" method="post" target="_top" name="formQuickSearch">
+						<i class="icon icon-gizmo-search"></i>
+						<input required="" class="header-search-input" placeholder="Search eLibrary" name="txtKey_Words" id="txtKeywords" type="text">
+						<input name="isQuickSearch" value="true" type="hidden">
+					</form>
+				</div>
+				<div class="header-search-right">
+					<a href="https://papers.ssrn.com/sol3/DisplayAbstractSearch.cfm">Advanced Search</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--SEARCH HEADER END-->
+<!--END HEADER-->
+
+
+
+	
+	
+<script src="page2_files/jquery.js"></script>
+<script type="text/javascript">if(typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='https://#strStaticServer#/libraries/JQuery/v1.12.4/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+}</script>
+
+
+<script>
+	function sentEmailValidation(lngLoginID, forwardURL){
+		var parameters = {
+			"lngLoginID" : lngLoginID,
+			"strForwardURL" : forwardURL
+		};
+		$.ajax({
+			type: "POST",
+			url: "https://static.ssrn.com/cfc/webServices/loginServices.cfc?method=sentValidationEmailNew",
+			data: parameters,
+			dataType: "jsonp",
+			async: false,
+			success: function(data) {
+				if(data.RESULT == 1){
+					$("#errorMessageLogin").html(data.MESSAGE);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus, errorThrown);
+			}
+		});
+	};
+</script>
+<script>
+$( document ).ready(function() {
+
+	// Show translation notice on footer on load
+	var hebrewIsSelected = $('.dropdown-lang option:last-child').is(':selected'),
+			$body = $('body'),
+			$loginBox = $('.loginBox'),
+			$menuMain = $('.menu-main'),
+			$profileMenu = $('.profileMenu');
+
+	if (hebrewIsSelected) {
+		toggleTranslationNote();
+	}
+
+	/* dropdown user*/
+	$('#btnSignin').click(function(e) {
+		e.preventDefault();
+		$("#txtLogin").val("");
+		$("#txtPassword").val("");
+		$("#errorMessageLogin").hide();
+		$("#error_show_login").hide();
+		$("#error_show_pass").hide();
+		$(".menu-main .register-link").hide();
+		$loginBox.toggleClass('open');
+		$body.toggleClass('nav-is-open');
+	});
+
+	$('#btnMenu').on('click', function() {
+		$body.addClass('nav-is-open');
+		$menuMain.addClass('open');
+	});
+
+	$('.mo-nav-close-btn').on('click', function() {
+		$body.removeClass('nav-is-open');
+		$(this).closest('.mo-nav').removeClass('open');
+	});
+
+	$('.mo-nav-search-btn').on('click', function() {
+		$menuMain.find('.menu-search').toggleClass('open');
+	});
+
+	
+	
+	$(document).on('click','#profile', function(e){
+		e.preventDefault();
+		$body.toggleClass('nav-is-open');
+		$profileMenu.toggleClass('open');
+	});
+	
+
+	/* Cleaning the email text*/
+	$('#txtLogin').bind("change keyup input",function() {
+		$(".error_show_login").hide();
+		$("#txtLogin").removeClass("loginError");
+		$("#errorMessageLogin").hide();
+	});
+
+	/* Cleaning the password text*/
+	$('.password-inp').bind("change keyup input",function() {
+		$(".error_show_pass").hide();
+		$("#txtPassword").removeClass("loginError");
+		$("#errorMessageLogin").hide();
+	});
+
+	/*Function for encrypt*/
+	function encrypt(key1, key2, key3){
+		var key = btoa(key1 + "|" + key2 + "|" + key3);
+		return key;
+	};
+
+	
+	function validateFields (){
+	   var emptyLogin = false;
+	   var emptyPass = false;
+
+	   if(document.getElementById("txtLogin") == null || document.getElementById("txtLogin").value == "")
+	   {
+		 $("#txtLogin").addClass('loginError');
+		 $(".error_show_login").show();
+		 emptyLogin = true;
+	   }
+	   if(document.getElementById("txtPassword") == null || document.getElementById("txtPassword").value == "" )
+	   {
+	     $("#txtPassword").addClass('loginError');
+		 $(".error_show_pass").show();
+		 emptyPass = true;
+	   }
+	   if(emptyLogin == true || emptyPass == true){
+		  return false;
+	   }
+	   return true;
+	};
+
+	
+	$('.password-inp').keypress(function(event) {
+	    if (event.keyCode == 13 || event.which == 13) {
+	        event.preventDefault();
+	        login();
+	    }
+	});
+
+	
+	$('#txtLogin').keypress(function(event) {
+	    if (event.keyCode == 13 || event.which == 13) {
+	        event.preventDefault();
+	        login();
+	    }
+	});
+
+	
+	$("#signin").click(function() {
+		login();
+	});
+
+	
+	function login(){
+		if (validateFields() != false) {
+			var user = document.getElementById("txtLogin").value;
+			var pass = document.getElementById("txtPassword").value;
+			var remember = $('.remember-me-check').prop('checked');
+			var keyUser = encrypt(user, pass, remember);
+			var parameters = {
+				"key" : keyUser
+			};
+			$.ajax({
+				type: "POST",
+				url: "https://static.ssrn.com/cfc/webServices/loginServices.cfc?method=signinService",
+				data: parameters,
+				dataType: "jsonp",
+				async: false,
+				success: function(data) {
+					if(data.ILOGINRESULT == 0) {
+						var lngPartLogedIn = data.USER.PART_ID;
+						buildmenu(lngPartLogedIn);
+						$("#name-header").text(data.USER.FULLNAME);
+						$("#name-mo-header").text(data.USER.FULLNAME);
+						$('#profile').show();
+						$("#btnSignin").hide();
+						$loginBox.removeClass('open');
+						$body.removeClass('nav-is-open');
+					} else {
+						$("#errorMessageLogin").html(data.MESSAGETOSHOW);
+						$("#errorMessageLogin").show();
+					}
+				}
+			});
+		} else {
+			return false;
+		};
+	};
+
+	
+	function buildmenu(lngPartLogedIn){
+		$("#personal").attr("href", "https://hq.ssrn.com/Participant.cfm?rectype=edit&partid=" + lngPartLogedIn + "&perinf=y");
+		$("#affil").attr("href", "https://hq.ssrn.com/Affiliations/AffiliationList.cfm?partid=" + lngPartLogedIn);
+		$("#suscr").attr("href", "https://hq.ssrn.com/Subscriptions.cfm?partId=" + lngPartLogedIn);
+		$("#mypapers").attr("href", "https://hq.ssrn.com/submissions/MyPapers.cfm?partid=" + lngPartLogedIn);
+	};
+
+	
+	$(document).click(function(event) {
+		if(!$(event.target).closest('.header-tooltip').length && $(event.target)[0] != $('#btnSignin')[0] && $(event.target)[0] != $('#profile')[0] ) {
+			if($('.header-tooltip').is(":visible") && $('.mo-nav-header').is(":hidden")) {
+				$body.removeClass('nav-is-open');
+				$('.header-tooltip').removeClass('open');
+			}
+		}
+	});
+
+	// Show translation notice on change
+	$('.dropdown-lang').on('change', function() {
+		toggleTranslationNote();
+	});
+
+	// Accordion functionality on Footer MO
+	var $collapseBtn = $('h4[data-toggle="collapse"]'),
+			$collapsableContent = $('.collapsable');
+
+	$collapseBtn.on('click', function(){
+		var $this = $(this),
+				$parent = $this.parent(),
+				$thisCollapsable = $parent.find('.collapsable');
+
+		$collapsableContent.slideUp('fast');
+
+		if ( !$thisCollapsable.is(":visible") ) {
+			$thisCollapsable.slideDown('fast');
+		}
+	});
+
+	// Show translation notice on footer
+	function toggleTranslationNote() {
+		$('.translation-notice').toggle();
+	}
+});
+
+	//Language function
+	function changeLanguage(response){
+		window.location.href=response;
+	}
+</script>
+
+
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" bgcolor="#CCCCCC" valign="top">
+				<!--Includes top menu-->
+					
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" valign="top" align="left">
+					
+					
+					
+					
+				</td>
+			</tr>
+			<tr valign="Top" align="left">
+
+				
+
+				
+
+				
+				
+					
+				
+				
+					<td width="194px" valign="Top">
+						<script type="text/javascript" src="page2_files/validations.js"></script>
+<p style="margin-top: 0; margin-bottom: 0; margin-left:5">
+<table valign="middle" cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+<td width="100%">
+<div class="roundedcornr_box">
+<div class="roundedcornr_top">
+<div></div>
+</div>
+<div class="roundedcornr_content" style="position:relative;">
+<form name="searchForm" id="searchForm" action="Results.cfm?RequestTimeout=50000000" method="post">
+<b>Search Within Results</b>
+<a href="https://www.ssrn.com/en/index.cfm/ssrn-faq/#search_within" target="_blank"><img src="page2_files/info.gif" style="vertical-align:middle;padding-left:3px;"></a>
+<br>
+<div id="searchWithinContainer" style="margin-top:10px; background:none;">
+<input onload="this.focus();" id="txtKey_Words_within" name="txtKey_Words_within" style="width:60%;vertical-align:middle;" maxlength="250" type="text">
+<a id="submitsearchwithin" href="javascript:void(0);" onclick="javascript:document.getElementById('searchForm').submit();"><img id="btnSearchWithin" src="page2_files/BTNSEARCH.PNG" style="vertical-align:middle; display:inline;"></a>
+<input id="iSearchWithinDone" name="iSearchWithinDone" value="0" type="hidden">
+<input id="strSearchTerm" name="strSearchTerm" value="" type="hidden">
+<input name="strSelectedOption" id="strSelectedOption" value="4" type="hidden">
+<input name="orderBy" value="numHits desc" type="hidden">
+<input name="iTotalResults" value="67" type="hidden">
+</div>
+<div style="clear:left;">
+<hr style="color: #fff; background-color: #e8e8e8; border: 1px dotted #666666; border-style: none none dotted;">
+<i><font style="font-size:11px;">You've searched for:</font></i>
+<ul style="margin: 0; padding-left: 15;font-size:11px;">
+<li>Shachmurove &nbsp;</li>
+</ul></div>
+<br><br><br>
+</form>
+</div>
+<div class="roundedcornr_bottom">
+<div></div>
+</div>
+</div>
+<div style="margin-top:15px; padding-top:5px; background-color:#ffffff; margin-right:0px; padding-left:5px;">
+<!-- this text replaces the image that was here previously-->
+<strong><font size="2" color="#333366" face="arial">Access eLibrary by</font></strong><br>
+<div class="accessLinks">
+<a href="https://papers.ssrn.com/sol3/displayabstractsearch.cfm" target="_top">Abstract &amp; Author</a>
+<a href="https://papers.ssrn.com/sol3/displayjournalbrowse.cfm" target="_top">Journal or topic</a>
+<a href="https://papers.ssrn.com/sol3/displayjel.cfm" target="_top">JEL topic list</a>
+</div>
+<div style="position:relative; margin-top: 14px;">
+<style>
+.styTextArea{
+overflow:auto;width:98%;margin-top:5px;color:#999999;font-size:11px;font-family:Myriad Roman, Arial, Helvetica, Sans-serif;text-decoration:none;
+}
+.styTextArea2{
+overflow:auto;width:98%;margin-top:5px;color:#999999;font-size:11px;font-family:Myriad Roman, Arial, Helvetica, Sans-serif;text-decoration:none;height:22px;
+}
+.styBackWhite{
+PADDING: 2px;
+FONT-SIZE: 11px;
+BACKGROUND-COLOR: #ffffff;
+WIDTH: 185px;
+COLOR: #666699;
+LINE-HEIGHT: 9px;
+BORDER-BOTTOM: #ccccff 1px solid;
+}
+.leftColBoxOHpage {
+BORDER: #c2c2d6 1px solid;
+FONT-SIZE: 10px;
+MARGIN-BOTTOM: 10px;
+MARGIN-LEFT: 3px;
+WIDTH: 146px;
+MARGIN-RIGHT: 1px;
+}
+.leftColBoxOHpage TD {
+PADDING: 2px;
+FONT-SIZE: 11px;
+}
+.leftColBoxOHpage input, .leftColBoxOHpage label{
+text-decoration: none;
+}
+</style>
+<form name="formSuggestions" id="openbox" style="display:none; margin-top:0;">
+<table class="leftColBox" style="z-index:100; " cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td style="width:93%; vertical-align: middle;" class="leftColBoxHead">
+<nobr><strong style="color:#000;">Feedback to SSRN</strong></nobr>
+</td>
+<td style="width:7%; vertical-align: middle; text-align:right;" class="leftColBoxHead">
+<a href="javascript:void(0);" onclick="closeBox();">
+<img class="leftboxarrow" src="page2_files/expanded.gif"></a>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="line-height:10px; padding:5px; background-color:#ffffff;">
+<br>Feedback (Required)
+<br><textarea name="txtFeedback" id="txtFeedback" rows="10" title="Feedback (Required)" class="styTextArea" onkeyup="checkFields(); return imposeMaxLength(this,1000);" style="color:#999;" onclick="checkFeedback(this);" onfocus="checkFeedback(this);">[enter your feedback here]</textarea><br>
+1,000 character maximum
+</td>
+</tr>
+<tr>
+<td colspan="2" style="line-height:10px; padding:5px; background-color:#ffffff;" width="100%">
+<br>Email Address (Required)
+<br><input name="txtEmail" id="txtEmail" title="Email Address (Required)" class="styTextArea2" onkeyup="checkFields();" style="color:#999;" onclick="checkEmailContent(this);" onfocus="checkEmailContent(this);" value="[enter valid email address here]" type="text"><br>
+<p align="center">
+<input name="txtReferer" value="/UserHome.cfm" type="hidden">
+<input name="btnSuggest" id="btnSuggest" value="Submit" disabled="true" onclick="sendSuggest();" type="button">
+<br><br><font style="font-size:xx-small;">If you need immediate 
+assistance, call 877-SSRNHelp (877 777 6435) in the United States, or +1
+ 585 442 8170 outside of the United States, 8:30AM to 6:00PM U.S. 
+Eastern, Monday - Friday.</font>
+</p>
+</td>
+</tr>
+</tbody></table>
+</form>
+<table id="closedbox" style="" class="leftColBox" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td style="width:93%; vertical-align: middle;" class="leftColBoxHead"><nobr><strong style="color:#000;">Feedback to SSRN</strong></nobr></td>
+<td style="width:7%; vertical-align: middle; text-align:right;" class="leftColBoxHead">
+<a href="javascript:void(0);" onclick="openBox();">
+<img class="leftboxarrow" src="page2_files/collapsed.gif"></a>
+</td>
+</tr>
+</tbody></table>
+<script language="javascript" type="text/javascript">
+var url = "https://papers.ssrn.com/AjaxStatic.cfm?file=SuggBoxProcess"; // The server-side script
+var isWorking = false;
+var windowwidth = 0;
+var windowheight = 0;
+var TZOffset = 0;
+var w_width = 0;
+var w_height = 0;
+if (window.outerWidth) {
+w_width = window.outerWidth;
+w_height = window.outerHeight;
+}
+else if (document.body.clientWidth) {
+w_width = document.body.clientWidth;
+w_height = document.body.clientHeight;
+}
+var mydate= new Date();
+var TZOffset = mydate.getTimezoneOffset()/60;
+function sendSuggest() {
+if (document.formSuggestions.txtEmail.value.length > 1000) {
+alert("Please make sure your suggestion is less then 1000 characters long.");
+}
+else {
+if (!isWorking && http) {
+var SugPageFrom = "/sol3/results.cfm";
+var IpAddr = "129.32.224.68";
+var FullUrl = Trim(prepareString("papers.ssrn.com/sol3/results.cfm?npage=2&"));
+var strEmail = document.getElementById("txtEmail").value;
+var strFeedback = Trim(document.getElementById("txtFeedback").value);
+strFeedback = Trim(prepareString(strFeedback));
+http.open('POST',url,false);
+http.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+http.send("txtFeedback="+strFeedback+"&txtEmail="+strEmail+"&SugPageFrom="+SugPageFrom+"&IPAddr="+IpAddr+"&FullUrl="+FullUrl+"&w_width="+w_width+"&w_height="+w_height+"&TZOffset="+TZOffset);
+}
+resetForm();
+}
+}
+function getHTTPObject() {
+var xmlhttp;
+if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+try {
+xmlhttp = new XMLHttpRequest();
+}
+catch (e) {
+xmlhttp = false;
+}
+}
+return xmlhttp;
+}
+var http = getHTTPObject(); // We create the HTTP Object
+function closeBox() {
+document.getElementById('openbox').style.display='none';
+document.getElementById('closedbox').style.display='block';
+}
+function openBox() {
+document.getElementById('closedbox').style.display='none';
+document.getElementById('openbox').style.display='block';
+}
+function Trim(stringToTrim) {
+return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+function checkEmailContent(valueEmail) {
+if (valueEmail.value && valueEmail.value == '[enter valid email address here]'){
+if (valueEmail.value != ''){
+valueEmail.value='';
+}
+valueEmail.style.color='black';
+}
+checkFields();
+}
+function checkFeedback(valueFeedback){
+if (valueFeedback.value && valueFeedback.value == '[enter your feedback here]'){
+valueFeedback.value='';
+valueFeedback.style.color='black';
+}
+checkFields();
+}
+function checkFields(){
+var feedbackPost = Trim(document.getElementById('txtFeedback').value);
+var emailPost = Trim(document.getElementById('txtEmail').value);
+var bChkEmail = /^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/;
+if (feedbackPost == '[enter your feedback here]' || feedbackPost.length == 0 || !bChkEmail.test(emailPost)) {
+document.formSuggestions.btnSuggest.disabled=true;
+}
+else {
+document.formSuggestions.btnSuggest.disabled=false;
+}
+}
+function resetForm(){
+// Reset form fields
+document.forms['formSuggestions'].reset();
+// Close Feedback Module
+closeBox();
+// Disable submit button
+document.formSuggestions.btnSuggest.disabled=true;
+// Set fields color
+if (Trim(document.getElementById('txtFeedback').value) == '[enter your feedback here]'){
+document.getElementById('txtFeedback').style.color='#999999';
+}
+if (Trim(document.getElementById('txtEmail').value) == '[enter valid email address here]'){
+document.getElementById('txtEmail').style.color='#999999';
+}
+}
+/*
+This function prepare string for special characteres.
+javascript use:	str = str.replace(/stringToSearch/g,'stringToReplace');
+cfscript use:		str = replaceAll(str, 'stringToSearch','stringToReplace');
+*/
+function prepareString ( str ){
+str = str.replace(/%/g,'|-.2.-|');
+str = encodeURI(str);
+str = str.replace(/&/g,'|-.1.-|');
+str = str.replace(/‘/g,'|-.7.-|');
+str = str.replace(/’/g,'|-.8.-|');
+// need to make these replacement b/c a bug that appeared after the CF upgrade
+str = str.replace(/%u2019/g,"'");
+str = str.replace(/%u2018/g,"'");
+// need to make these replacement b/c a bug in Safari
+str = str.replace(/%u201C/g,'%22');
+str = str.replace(/%u201D/g,'%22');
+str = str.replace(/%u2013/g,'-');
+str = str.replace(/%u2014/g,'-');
+str = str.replace(/%uF0FC/g,'*');
+str = str.replace(/%u2022/g,'*');
+str = str.replace(/%uF0A7/g,'*');
+return str;
+}
+function imposeMaxLength(Object, MaxLen){
+var tecla, int_value, out_value;
+if (Object.value.length > MaxLen){
+in_value = Object.value;
+out_value = in_value.substring(0,MaxLen);
+Object.value = out_value;
+return false;
+}
+return true;
+}
+</script>
+</div>
+<div>
+<p id="leftmenuPublic" style="margin-bottom: 6px; margin-top: 6px;"><strong><font size="2" color="#333366" face="Arial">SSRN eLibrary Statistics:</font></strong></p>
+<font class="statisticFontPC">
+</font><font class="statisticFontPC">
+</font><table class="border-spacing leftMnuBoxCont" cellspacing="-2" cellpadding="-1" width="60%">
+<tbody><tr>
+<td colspan="2">
+<font size="2" color="#666666" face="Arial"><strong>Papers &amp; Authors:</strong></font>
+</td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+<nobr>Abstracts:</nobr>
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+715,090
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+<nobr>Full Text Papers:</nobr>
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+602,531
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+<nobr>Authors:</nobr>
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+329,797
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+<nobr>Papers Received in</nobr> <br>&nbsp;&nbsp;Last 12 months:</font>
+</td>
+<td valign="bottom" align="right">
+<font class="statisticFontPC">
+64,809
+</font></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<br>
+<font size="2" color="#666666" face="Arial"><strong>Paper Downloads:</strong></font>
+</td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+To date:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+108,466,448
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Last 12 months:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+13,657,687
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Last 30 days:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+1,022,265
+</font></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<br>
+<nobr>
+<font size="2" color="#666666" face="Arial">
+<strong>
+CiteReader:&nbsp;&nbsp;
+<a style="font-size:9px; padding-top: 10px;" href="javascript:void(0);" onclick="window.open('about_citereader.html','aboutCitations','toolbar=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=470,left=200,top=100');">What’s this?</a>
+</strong>
+</font>
+</nobr>
+</td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Papers with <br>&nbsp;&nbsp;Resolved <br>&nbsp;&nbsp;References:
+</font></td>
+<td valign="bottom" align="right">
+<font class="statisticFontPC">
+315,434
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Total References:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+9,202,492
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Papers with Cites:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+247,722
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Total Citation <br>&nbsp;&nbsp;Links:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+5,928,602
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Papers with <br>&nbsp;&nbsp;Resolved <br>&nbsp;&nbsp;Footnotes:
+</font></td>
+<td valign="bottom" align="right">
+<font class="statisticFontPC">
+91,577
+</font></td>
+</tr>
+<tr>
+<td>
+<font class="statisticFontPC">
+Total Footnotes:
+</font></td>
+<td align="right">
+<font class="statisticFontPC">
+8,991,770
+</font></td>
+</tr>
+
+</tbody></table>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table>
+</p>
+					</td>
+					<td>
+						<img src="page2_files/placeholder.gif" border="0" width="10" height="1">
+					</td>
+					<td width="100%" valign="Top" align="left">
+						<form method="post" name="form1" action="Results.cfm">
+<input name="orderBy" value="numHits desc" type="hidden">
+<input name="strSelectedOption" id="strSelectedOption" value="4" type="hidden">
+<input id="iSearchWithinDone" name="iSearchWithinDone" value="0" type="hidden">
+<input name="iTotalResults" value="67" type="hidden">
+</form>
+<br>
+<font size="3" color="#000000" face="ARIAL, HELVETICA">
+<strong>SSRN eLibrary Search Results</strong><br>
+</font>
+<br>
+<font size="2" face="ARIAL, HELVETICA">
+<div style="width:90%;position:relative;min-width:850px;">
+<div style="float:right;height:2px;background-color:#BBBBBB; margin-bottom:14px;width:100%;"></div>
+<div style="float:left;padding-top:2px;">Showing Papers        51 -        67 of        67</div>
+<div style="float:left;padding-left:50px; ">
+Sort By
+<select onchange="resortResults(this.value);">
+<option value="1">Abstract Title, A-Z</option>
+<option value="2">Abstract Title, Z-A</option>
+<option value="3">Downloads, Ascending</option>
+<option value="4" selected="selected">Downloads, Descending</option>
+<option value="5">Date Posted, Ascending</option>
+<option value="6">Date Posted, Descending</option>
+</select>
+</div>
+<div style="float:right;padding-top:2px;" dir="ltr">
+<a href="javascript:void(0);" onclick="changePage('/sol3/results.cfm?npage=1&amp;');" style="text-decoration: none;">&lt; Previous</a>	
+|
+<a href="javascript:void(0);" onclick="changePage('/sol3/results.cfm?npage=1&amp;');" class="jeljour_pagination_number" style="text-decoration: none;"><span>1</span></a>	
+<b>2</b>
+<div id="gotodiv" style="display:inline;">
+&nbsp;&nbsp;&nbsp;	
+<input placeholder="Go to page" required="no" min="1" class="gotopageinput" onkeypress="return isNumberKey(event)" style="width: 88px; vertical-align:middle; display:inline;" type="number">
+<a id="gotopagetext" href="javascript:void(0);" onclick="gotoPage(2,this.parentNode);"><img id="goToPageImg" src="page2_files/btnSearch.png" style="vertical-align:middle; display:inline;"></a>
+</div>
+<script type="text/javascript" language="javascript">
+function isNumberKey(evt){
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57))
+return false;
+return true;
+}
+function gotoPage(totalPages,caller){
+var gotopage = caller.getElementsByTagName('input')[0].value;
+if (gotopage == "" || gotopage == null)
+{
+alert('The page number field cannot be empty.  Please enter a page number and try again.');
+return false;
+}
+else if (gotopage < 1 || gotopage > totalPages)
+{
+alert('The requested page does not exist.');
+return false;
+}
+changePage('/sol3/results.cfm?npage='+gotopage+'&');
+}
+</script>
+</div>
+<div style="float:right;height:2px;background-color:#BBBBBB; margin-top: 10px; margin-bottom:14px;width:100%;"></div>
+</div>
+<br>
+<table cellspacing="0" cellpadding="3" width="90%">
+<tbody><tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">51.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2563820" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Why Institutions Matter? The Recent Experience of the United States and the European Union </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2358467" target="_blank">Tadeusz Kowalski</a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+City University of New York, CUNY City College of New York - Department of Economics and Poznan University of Economics 
+</div>
+<div style="padding-top:3px;">Keywords: Financial crisis, International competitiveness, Monetary and fiscal policies, Regulations,  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>136 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">13 Feb 2015 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 36
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">52.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2572662" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> The Federal Funds Interest Rate Meets the Prime Rates </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=54695" target="_blank">Joseph Friedman</a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+Temple University - Department of Economics and City University of New 
+York, CUNY City College of New York - Department of Economics 
+</div>
+<div style="padding-top:3px;">Keywords: Federal Fund Rate; Prime Rate; Federal Reserve Bank; Monetary Policy; Commercial Banks; Vector Auto  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>123 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">04 Mar 2015 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 16
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">53.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2570591" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Unitized Risk and Real Rates of Return: A Historical Evolution of the Leading International Stock Exchanges </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=426296" target="_blank">Alojzy Z. Nowak</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2364043" target="_blank">Tadeusz Winkler-Drews</a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+University of Warsaw, Kozminski University and City University of New 
+York, CUNY City College of New York - Department of Economics 
+</div>
+<div style="padding-top:3px;">Keywords: New York Stock Exchange, London Stock Exchange, Euronext, Deutsche Börse, Tokyo Stock Exchange,  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>121 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">27 Feb 2015 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 29
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">54.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2572740" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Can the Eurozone Survive? </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=426296" target="_blank">Alojzy Z. Nowak</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2366009" target="_blank">Kazimierz Ryc</a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+University of Warsaw, University of Warsaw and City University of New 
+York, CUNY City College of New York - Department of Economics 
+</div>
+<div style="padding-top:3px;">Keywords: euro, economic competitiveness, economic policy of Eurozone, sectoral policy, monetary system</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>119 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">04 Mar 2015 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 37
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">55.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2709232" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Another Way Out: Structured Dismissals in Jevic's Wake </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Norton Bankruptcy Law Adviser, November 2015</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1925618" target="_blank">Amir <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+U.S. District Court - Eastern District of New York 
+</div>
+<div style="padding-top:3px;">Keywords: bankruptcy, jevic, chapter 11, structured dismissal, dismissal, jevic, reorganization, liquidation,  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>80 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">01 Feb 2016 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">15 Jul 2016 </div>
+| &nbsp;  Number of Pages in PDF File: 21
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">56.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2686240" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Purchasing Claims and Changing Votes: Establishing 'Cause' Under Rule 3018(a) </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>89 Am. Bankr. L.J. 511 (2015)</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1925618" target="_blank">Amir <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+U.S. District Court - Eastern District of New York 
+</div>
+<div style="padding-top:3px;">Keywords: bankruptcy, claims trading, code, bankruptcy code, bankruptcy rules, canons, rules enabling act,  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>64 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">06 Nov 2015 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">30 Dec 2016 </div>
+| &nbsp;  Number of Pages in PDF File: 56
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">57.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2898102" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> SPAC IPOs </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Forthcoming, Oxford Handbook of IPOs, edited by Douglas Cumming and Sofia Johan (2017)</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=424955" target="_blank">Milos Vulanovic</a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+City University of New York, CUNY City College of New York - Department of Economics and EDHEC Business School 
+</div>
+<div style="padding-top:3px;">Keywords: Blank checks, Initial public offering (IPO), IPO survival, M&amp;A, Specified purpose acquisition  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>48 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">17 Jan 2017 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 37
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">58.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2673568" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink">
+ Remembrance of Claims Past: The Due Process Owed to Unknown and 
+Unknowable Future Claims in Light of Williams v. Placid Oil Co. (In re 
+Placid Oil Co.) </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Norton Bankr. L. Adviser, Feb. 2015, at 1</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1925618" target="_blank">Amir <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+U.S. District Court - Eastern District of New York 
+</div>
+<div style="padding-top:3px;">Keywords: bankruptcy, Bankruptcy code, 525, Due Process, Placid Oil, Fifth Amendment, A.H. Robins, Manville,  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>43 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">14 Oct 2015 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">15 Jul 2016 </div>
+| &nbsp;  Number of Pages in PDF File: 18
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">59.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2673565" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Bankruptcy Rule 7004(h) after Espinosa: A Timely Distinction between Constitutional and Statutory Service </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Norton Bankr. L. Adviser, June 2014, at 1</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1925618" target="_blank">Amir <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+U.S. District Court - Eastern District of New York 
+</div>
+<div style="padding-top:3px;">Keywords: bankruptcy, bankruptcy rules, bankruptcy code, Rule 7004(h), Espinosa, Chapter 13, Rule 60(b)</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>41 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">14 Oct 2015 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">15 Jul 2016 </div>
+| &nbsp;  Number of Pages in PDF File: 10
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">60.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2673560" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Sherlock's Admonition: Vindicatory Contempts as Criminal Actions for Purposes of Bankruptcy Code § 362 </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>13 DePaul Bus. &amp; Com. L.J. 67 (2014)</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1925618" target="_blank">Amir <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+U.S. District Court - Eastern District of New York 
+</div>
+<div style="padding-top:3px;">Keywords: bankruptcy, bankruptcy code, contempt, vindicatory, criminal contempt, civil contempt, automatic  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>26 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">14 Oct 2015 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">15 Jul 2016 </div>
+| &nbsp;  Number of Pages in PDF File: 39
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">61.</font>
+</td>
+<td valign="top">
+<img src="page2_files/fee_pdf.gif" alt="Incl. Fee Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=501544" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> What Makes an Entrepreneur and Does it Pay? Native Men, Turks, and Other Migrants in Germany </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>CEPR Discussion Paper No. 4207</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=118293" target="_blank">Amelie F. Constant</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=51440" target="_blank">Klaus F. Zimmermann</a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+Princeton University, City University of New York, CUNY City College of 
+New York - Department of Economics and Harvard University 
+</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>19 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">10 Feb 2004 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 36
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">62.</font>
+</td>
+<td valign="top">
+<img src="page2_files/fee_pdf.gif" alt="Incl. Fee Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=877126" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Why is China so Competitive? Measuring and Explaining China's Competitiveness </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>The World Economy, Vol. 29, No. 2, pp. 95-122, February 2006</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=144628" target="_blank">F. Gerard Adams</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=367372" target="_blank">Byron Gangnes</a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+Northeastern University - D’Amore-McKim School of Business, University 
+of Hawaii - Department of Economics and City University of New York, 
+CUNY City College of New York - Department of Economics 
+</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>19 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">19 Jan 2006 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 28
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">63.</font>
+</td>
+<td valign="top">
+<img src="page2_files/fee_pdf.gif" alt="Incl. Fee Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=727297" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> A Monopoly Reason why Autarky might be Best for a Large Country </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Manchester School, Vol. 73, No. 3, pp. 269-280, June 2005</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=250035" target="_blank">Uriel Spiegel</a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+City University of New York, CUNY City College of New York - Department 
+of Economics and Bar-Ilan University - Department of Management 
+</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>18 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">23 May 2005 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 12
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">64.</font>
+</td>
+<td valign="top">
+<img src="page2_files/free_pdf.gif" alt="Incl. Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2752687" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Disruptions' Function: A Defense of (Some) Form Objections under the Federal Rules of Civil Procedure </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>12 Seton Hall Cir. Rev. 161 (2016)</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1925618" target="_blank">Amir <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+U.S. District Court - Eastern District of New York 
+</div>
+<div style="padding-top:3px;">Keywords: Federal Rules of Civil Procedure, federal rules, Rule 26, Rule 1, compound, Title V, Rule 34, Rule  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>9 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">15 Jul 2016 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">30 Dec 2016 </div>
+| &nbsp;  Number of Pages in PDF File: 53
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">65.</font>
+</td>
+<td valign="top">
+<img src="page2_files/fee_pdf.gif" alt="Incl. Fee Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1809367" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Diversification and Specialization Paradox in Developing Country Trade </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Review of Development Economics, Vol. 15, No. 2, pp. 212-222, 2011</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=345465" target="_blank">Mitchell H. Kellman</a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+City University of New York, CUNY City College of New York - Department 
+of Economics and City University of New York, CUNY City College of New 
+York - Department of Economics 
+</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>2 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">14 Apr 2011 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 11
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">66.</font>
+</td>
+<td valign="top">
+<img src="page2_files/fee_pdf.gif" alt="Incl. Fee Electronic Paper">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1658299" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Labor-Managed Firms in Transition Economies </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;padding-top:3px;"><i>Comparative Economic Studies, Vol. 37, Issue 1, pp. 39-53, 1995</i></div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=250035" target="_blank">Uriel Spiegel</a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+City University of New York, CUNY City College of New York - Department 
+of Economics and Bar-Ilan University - Department of Management 
+</div>
+<div style="padding-top:4px;display: inline-block;">
+<div style="float: left;"><b>1 </b>Downloads &nbsp; | &nbsp;&nbsp;</div>
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">16 Aug 2010 </div> &nbsp;&nbsp;
+| &nbsp;  Number of Pages in PDF File: 15
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+<tr>
+<td style="padding-left:0px;" valign="top" align="right">
+<font size="2">67.</font>
+</td>
+<td valign="top">
+</td>
+<td width="96%" valign="top">
+<font size="-1">
+<strong><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2750180" target="_top" onmouseover="self.status='Show abstract detail'; return true" class="textLink"> Finance Methodology of Free Cash Flow </a></strong><br>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=556629" target="_blank">Uzi Yaari</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=410528" target="_blank">Andrei L. Nikiforov</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=59978" target="_blank">Emel Kahya</a> and <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=25958" target="_blank">Yochanan <span class="searchTermsHighlighted">Shachmurove</span></a> 
+</div>
+<div style="padding-left:19px;text-indent:-1.5em;  padding-top:3px;">
+Rutgers University, Rutgers University, Rutgers, The State University of
+ New Jersey - Accounting and City University of New York, CUNY City 
+College of New York - Department of Economics 
+</div>
+<div style="padding-top:3px;">Keywords: financial reporting, free cash flow, net working capital, cost of capital, corporate valuation,  ...</div>
+<div style="padding-top:4px;display: inline-block;">
+<div class="dateTitleltr">Date posted:&nbsp;</div>
+<div class="dateValueltr">20 Mar 2016 </div> &nbsp;&nbsp;
+<div class="dateTitleltr">&nbsp;&nbsp; | &nbsp;  Last revised:&nbsp;</div>
+<div class="dateValueltr">18 May 2016 </div>
+</div>
+<br>
+<br>
+</font></td>
+</tr>
+</tbody></table>
+<br>
+<font size="2" face="ARIAL, HELVETICA">
+<div style="height:2px;background-color:#BBBBBB;width:90%;"></div>
+<div style="width:90%;position:relative;padding-bottom:20px;padding-top:15px;">
+<div style="float:right;padding-top:2px;" dir="ltr">
+<a href="javascript:void(0);" onclick="changePage('/sol3/results.cfm?npage=1&amp;');" style="text-decoration: none;">&lt; Previous</a>	
+|
+<a href="javascript:void(0);" onclick="changePage('/sol3/results.cfm?npage=1&amp;');" class="jeljour_pagination_number" style="text-decoration: none;"><span>1</span></a>	
+<b>2</b>
+<div id="gotodiv" style="display:inline;">
+&nbsp;&nbsp;&nbsp;	
+<input placeholder="Go to page" required="no" min="1" class="gotopageinput" onkeypress="return isNumberKey(event)" style="width: 88px; vertical-align:middle; display:inline;" type="number">
+<a id="gotopagetext" href="javascript:void(0);" onclick="gotoPage(2,this.parentNode);"><img id="goToPageImg" src="page2_files/btnSearch.png" style="vertical-align:middle; display:inline;"></a>
+</div>
+<script type="text/javascript" language="javascript">
+function isNumberKey(evt){
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57))
+return false;
+return true;
+}
+function gotoPage(totalPages,caller){
+var gotopage = caller.getElementsByTagName('input')[0].value;
+if (gotopage == "" || gotopage == null)
+{
+alert('The page number field cannot be empty.  Please enter a page number and try again.');
+return false;
+}
+else if (gotopage < 1 || gotopage > totalPages)
+{
+alert('The requested page does not exist.');
+return false;
+}
+changePage('/sol3/results.cfm?npage='+gotopage+'&');
+}
+</script>
+</div>
+</div>
+<br>
+<div style="height:2px;background-color:#BBBBBB;width:90%;"></div>
+<br>
+</font>
+					</font></td>
+				</tr>
+		</tbody></table>
+	<br>
+
+	
+<link rel="stylesheet" type="text/css" href="page2_files/font-awesome.css">
+
+
+
+	<!-- includes piwik Trakcer -->
+	
+
+
+	 
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.ssrn.com/" : "http://piwik.ssrn.com/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="page2_files/piwik.js" type="text/javascript"></script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 7);
+
+
+
+
+
+	piwikTracker.setCustomVariable(1, "User", "Unknown","visit");
+	piwikTracker.trackPageView();
+	piwikTracker.enableLinkTracking();
+
+} catch( err ) {}
+</script><noscript><p><img src="https://piwik.ssrn.com/piwik.php?idsite=7" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
+
+	<!--Includesss footer -->
+
+
+
+
+
+<!--FOOTER-->
+<div class="footer-integration footer-redesigned">
+	<div class="container">
+		<div class="row">
+			<div class="footer-col">
+				<a href="https://hq.ssrn.com/submissions/CreateNewAbstract.cfm" class="btn-blue-outline-third submit-paper-btn">
+					Submit a Paper
+					<i class="icon icon-gizmo-navigate-right"></i>
+				</a>
+				<a class="section-508-link" href="https://www.ssrn.com/en/index.cfm/section-508/">Section 508 Text Only Pages</a>
+			</div>
+			<div class="footer-col">
+				<h4 data-toggle="collapse">Quick Links <i class="icon-gizmo-navigate-down"></i></h4>
+				<div class="footer-links collapsable">
+					<a href="https://www.ssrn.com/en/index.cfm/rps/">Research Paper Series</a>
+					<a href="https://www.ssrn.com/en/index.cfm/conferences/">Conference Papers</a>
+					<a href="https://papers.ssrn.com/sol3/DisplayPipPublishers.cfm">Partners in Publishing</a>
+					<a href="https://www.ssrn.com/en/index.cfm/org-homepage/">Organization Homepages</a>
+				</div>
+			</div>
+			<div class="footer-col">
+				<h4 data-toggle="collapse">Rankings <i class="icon-gizmo-navigate-down"></i></h4>
+				<div class="footer-links collapsable">
+					<a href="https://hq.ssrn.com/rankings/Ranking_display.cfm?TRN_gID=10">Top Papers</a>
+					<a href="https://www.ssrn.com/en/index.cfm/top-authors/">Top Authors</a>
+					<a href="https://www.ssrn.com/en/index.cfm/top-organizations/">Top Organizations</a>
+				</div>
+			</div>
+			<div class="footer-col">
+				<h4 data-toggle="collapse">About <i class="icon-gizmo-navigate-down"></i></h4>
+				<div class="footer-links collapsable">
+					<a href="https://www.ssrn.com/en/index.cfm/ssrns-objectives/">SSRN Objectives</a>
+					<a href="https://www.ssrn.com/en/index.cfm/network-directors/">Network Directors</a>
+					<a href="https://www.ssrn.com/en/index.cfm/presidents-letter/">Presidential Letter</a>
+					<a href="https://www.ssrn.com/en/index.cfm/recent-announcements/">Announcements</a>
+					<a href="https://www.ssrn.com/en/index.cfm/contactus/">Contact us</a>
+					<a href="https://www.ssrn.com/en/index.cfm/ssrn-faq/">FAQs</a>
+				</div>
+			</div>
+			<div class="footer-col">
+				<h4 data-toggle="collapse">Language <i class="icon-gizmo-navigate-down"></i></h4>
+				<div class="collapsable">
+					<select id="svLTM" class="dropdown-lang" onchange="changeLanguage(this.value);">
+						<option value="https://www.ssrn.com/en/" selected="selected">English</option>
+						<option value="https://www.ssrn.com/en/index.cfm/hrn/">Hebrew</option>
+					</select>
+					<div class="translation-notice note">
+						<span>Please note:</span>
+						Language translation is available on select pages.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-social-links">
+			<a target="_blank" href="https://www.facebook.com/SSRNcommunity/"><i class="icon icon-social-facebook"></i></a>
+			<a target="_blank" href="https://www.linkedin.com/company/493409?trk=tyah&amp;trkInfo=clickedVertical%3Acompany%2CentityType%3AentityHistoryName%2CclickedEntityId%3Acompany_493409%2Cidx%3A0"><i class="icon icon-social-linkedin"></i></a>
+			<a target="_blank" href="https://twitter.com/SSRN"><i class="icon icon-social-twitter"></i></a>
+			<a target="_blank" style="display:none;" href="javascript:void(0);"><i class="icon icon-social-googleplus"></i></a>
+		</div>
+		<div class="footer-elsevier">
+			<div class="footer-left">
+				<a class="logo-elsevier" target="_blank" href="http://www.elsevier.com/">
+					<img src="page2_files/elsevier-logo.png" alt="Elsevier logo">
+				</a>
+			</div>
+			<div class="footer-left">
+				<div class="footer-links">
+					<a href="https://www.ssrn.com/en/index.cfm/dmca-notice-policy/">Copyright</a>
+					<a href="https://www.ssrn.com/en/index.cfm/terms-of-use/">Terms and Conditions</a>
+					<a href="https://www.ssrn.com/en/index.cfm/privacy-policy/">Privacy Policy</a>
+				</div>
+				<div class="footer-text">
+					<p>Cookies are used by this site. To decline or learn more, visit <a href="https://www.ssrn.com/en/index.cfm/ssrn-faq/#cookies">our Cookies page</a>.
+					<span class="icon-gizmo-lightning alwaysshowme">
+						<span class="tooltip top" role="tooltip">
+							<span class="tooltip-arrow"></span>
+							<span class="tooltip-inner">This page was processed by apollo5 in <span id="serverTime">  0.734</span> seconds <span id="loadingtime">and delivered in 2.221 seconds</span></span>
+						</span>
+					</span>
+					</p>
+				</div>
+			</div>
+			<div class="footer-right">
+				<a class="logo-relx" target="_blank" href="http://www.relx.com/">
+					<img src="page2_files/relax-logo.png" alt="Relx Group logo">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--END FOOTER-->
+
+
+
+
+	
+
+
+	
+
+
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function() {
+		surveyInvite();
+	});
+
+	var cookieIdentifier = "StoreExitSurvey20121130";
+	var cookieLifetimeInDays = "180";
+	var exitSurveyLink = 
+'http://survey.confirmit.com/wix/p3080186775.aspx?s_id=1';
+	var exitSurveyChance = 0; // 0.5 = 50% chance, 1 = 100% chance
+
+	function surveyInvite() {
+		if (getCookie(cookieIdentifier) != "true") {
+
+			if (Math.random() <= exitSurveyChance) {
+				setCookie(cookieIdentifier, "true", cookieLifetimeInDays)
+
+				elementHTML = jQuery('#exitsurvey_template').html();
+				surveyDiv = jQuery('<div id="exitsurvey_container" 
+class="exitsurvey_container"/ style="display:none;">'),
+				surveyDiv.html(elementHTML);
+
+				jQuery('body').append(surveyDiv);
+				jQuery('#exitsurvey_container').show();
+
+				// 2 seconds after the page is loaded slide survey box into view
+				jQuery('#exitsurvey_container').delay(2000).animate({"bottom": 
+"+=360px"}, 1000, "swing", function() {
+					// do nothing for now...
+				});
+			}
+		}
+	}
+
+	function surveyAccept() {
+		var page = "http://" + window.location.hostname;
+		var windowprops = 
+"width=200,height=200,location=no,toolbar=no,menubar=no,scrollbars=yes,resizable=yes";
+
+		var PopWindow = window.open(page, "survey", windowprops);
+		
+		
+
+		window.setTimeout(window.focus, 500);
+
+		if (PopWindow) {
+			exitSurveyHTML = getNewWindowHTML();
+			PopWindow.document.write(exitSurveyHTML);
+			PopWindow.document.close( );
+
+			if (navigator.userAgent.indexOf('Chrome/') > 0){
+				window.focus();
+			}
+
+			PopWindow.blur();
+
+			if (navigator.userAgent.indexOf('Firefox/4') > 0){
+				window.open("", "_self", "");
+			}
+		}
+
+		surveyClose();
+	}
+
+	function surveyClose(){
+		jQuery('#exitsurvey_container').hide();
+	}
+
+	function PopupCenter(url, title, w, h) {
+	    // Fixes dual-screen position                         Most browsers
+      Firefox
+	    var dualScreenLeft = window.screenLeft != undefined ? 
+window.screenLeft : screen.left;
+	    var dualScreenTop = window.screenTop != undefined ? 
+window.screenTop : screen.top;
+
+	    var width = window.innerWidth ? window.innerWidth : 
+document.documentElement.clientWidth ? 
+document.documentElement.clientWidth : screen.width;
+	    var height = window.innerHeight ? window.innerHeight : 
+document.documentElement.clientHeight ? 
+document.documentElement.clientHeight : screen.height;
+
+	    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+	    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+	    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w
+ + ', height=' + h + ', top=' + top + ', left=' + left);
+
+	    // Puts focus on the newWindow
+	    if (window.focus) {
+	        newWindow.focus();
+	    }
+	}
+
+	function getNewWindowHTML(){
+		windowHTML = '';
+		windowHTML += '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 
+Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
+		windowHTML += '<html>';
+		
+		windowHTML += '<body>';
+		windowHTML += '<p style="text-align:center;">Thank you for agreeing to
+ take our short survey.<br>Please leave this window open. The survey 
+will load here when you close your main browser window.</p>';
+		windowHTML += '<script type="text/javascript">';
+		windowHTML += 'var i;';
+		windowHTML += 'var lastseen = window.opener.location.hostname;';
+		windowHTML += 'function CheckParent() {';
+		windowHTML += 'try {';
+		windowHTML += 'var host = window.opener.location.hostname;';
+		windowHTML += 'if (host != lastseen){';
+		windowHTML += 'lastseen = host;';
+		windowHTML += '}';
+		windowHTML += 'return;';
+		windowHTML += '} catch(error){';
+		windowHTML += 'clearInterval(i);';
+		windowHTML += 'moveTo(screen.width/2-450,screen.height/2-300);';
+		windowHTML += 'resizeTo(900,600);';
+		windowHTML += 'this.focus();';
+		windowHTML += 'if (navigator.appName != "Microsoft Internet Explorer")
+ {';
+		windowHTML += 'alert("Click ok to begin your survey");';
+		windowHTML += '}';
+		windowHTML += 'this.location="' + exitSurveyLink + '";';
+		windowHTML += '}';
+		windowHTML += '}';
+		windowHTML += 'i = setInterval("CheckParent()", 500);';
+		windowHTML += '<\/script>';
+		windowHTML += '<\/body>';
+		windowHTML += '<\/html>';
+
+		return windowHTML;
+	}
+
+	// Cookie helper functions
+	function setCookie(c_name,value,exdays){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var c_value=escape(value) + ((exdays==null) ? "" : "; 
+expires="+exdate.toUTCString());
+		document.cookie=c_name + "=" + c_value;
+	}
+
+	function getCookie(c_name){
+		var i,x,y,ARRcookies=document.cookie.split(";");
+		for (i=0;i<ARRcookies.length;i++) {
+			x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+			y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+			x=x.replace(/^\s+|\s+$/g,"");
+			if (x==c_name){
+				return unescape(y);
+			}
+		}
+	}
+</script>
+
+<div id="exitsurvey_template" class="exitsurvey_container" style="display:none;">
+	<div class="exitsurvey_header">
+		<h2>Thank you for visiting SSRN today</h2>
+		<span class="icon-gizmo-delete exitsurvey_close" onclick="javascript:surveyClose();" alt="Close this survey" title="Close this survey"></span>
+	</div>
+	<div class="exitsurvey_content">
+		<p>We'd like to ask you to provide feedback on your experience with 
+SSRN today. Your feedback will be used to enhance the site in the 
+future.</p>
+		<p>Would you be willing to answer a few questions when you leave our site?</p>
+		<p>
+			<a id="btnSurveyYes" class="btn-blue-outline-third btn-survey-yes" href="javascript:surveyAccept();">Yes, I'm willing to take part in a survey</a>
+			<a id="btnSurveyNo" class="btn-survey-no" href="javascript:surveyClose();">No, thank you</a>
+		</p>
+	</div>
+</div>
+
+	
+		
+		
+
+    
+
+    
+	
+	
+	<script language="javascript">
+	if (window.loadingTime){addLoadEvent(loadingTime);}
+	setTimeout(function(){var a=document.createElement("script");
+	var b=document.getElementsByTagName("script")[0];
+	a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0020/1063.js?"+Math.floor(new Date().getTime()/3600000);
+	a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+	
+		
+		
+
+
+	
+		
+		
+		<script type="text/javascript">pageDataTracker.trackPageLoad();</script>
+	
+
+	
+	
+
+
+
+
+	
+
+
+
+</body></html>
